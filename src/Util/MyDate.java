@@ -1,6 +1,7 @@
 package Util;
 
 import java.time.DateTimeException;
+import java.util.Objects;
 
 public class MyDate {
 
@@ -118,5 +119,17 @@ public class MyDate {
 
     private String formatNum(int num) {
         return num < 10 ? "0" + num : String.valueOf(num);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MyDate myDate)) return false;
+        return year == myDate.year && day == myDate.day && hour == myDate.hour && minute == myDate.minute && second == myDate.second && month == myDate.month;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(year, month, day, hour, minute, second);
     }
 }
