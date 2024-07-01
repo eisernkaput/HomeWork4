@@ -38,5 +38,6 @@ public class Main {
         HomeWorkFive.forthTask();
         HomeWorkFive.fifthTask();
         HomeWorkFive.sixthTask();
+        HomeWorkFive.seventhTask();
     }
 }
