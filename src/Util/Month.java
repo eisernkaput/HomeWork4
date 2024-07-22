@@ -1,6 +1,10 @@
 package Util;
 
 import java.time.DateTimeException;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public enum Month {
 
@@ -17,13 +21,13 @@ public enum Month {
     NOVEMBER(11, "Ноябрь", "November"),
     DECEMBER(12, "Декабрь", "December");
 
+    private static final Map <Integer, Month> months = Arrays.stream(Month.values()).collect(Collectors.toMap(Month::getMonthNum, Function.identity()));
+
     private final int monthNum;
 
     private final String russianTitle;
 
     private final String englishTitle;
-
-    private static final Month[] ENUMS = Month.values();
 
     Month(int monthNum, String russianTitle, String englishTitle) {
         this.monthNum = monthNum;
@@ -35,11 +39,11 @@ public enum Month {
         return monthNum;
     }
 
-    public static Month of(int month) {
-        if (month < 1 || month > 12) {
-            throw new DateTimeException("Invalid value for MonthOfYear: " + month);
+    public static Month of(int monthNum) {
+        if (monthNum < 1 || monthNum > 12) {
+            throw new DateTimeException("Invalid value for MonthOfYear: " + monthNum);
         }
-        return ENUMS[month - 1];
+        return months.get(monthNum);
     }
 
     public String getRussianTitle() {

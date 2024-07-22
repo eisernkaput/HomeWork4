@@ -50,4 +50,13 @@ public class BankCard extends Entity {
     public Boolean isCardExpired(MyDate todayDate) {
         return todayDate.isAfter(this.getExpirationDate());
     }
+
+    @Override
+    public String toString() {
+        return "BankCard{" +
+                "cardOwner=" + cardOwner +
+                ", cardNumber=" + cardNumber +
+                ", issueDate=" + issueDate +
+                '}';
+    }
 }

@@ -2,7 +2,7 @@ package Entities;
 
 import java.io.Serializable;
 
-public abstract class Entity implements Serializable {
+public abstract class Entity implements Serializable,Comparable<Entity> {
 
     private String id;
 
@@ -17,5 +17,10 @@ public abstract class Entity implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Override
+    public int compareTo(Entity e) {
+        return this.getId().compareTo(e.getId());
     }
 }

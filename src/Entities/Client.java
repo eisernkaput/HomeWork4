@@ -3,9 +3,7 @@ package Entities;
 import Util.Gender;
 import Util.MyDate;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Optional;
+import java.util.*;
 
 public class Client extends Entity {
 
@@ -80,15 +78,32 @@ public class Client extends Entity {
     }
 
     public void addCardToClientCards(BankCard bankCard) {
-        this.clientCards.put(bankCard.getId(),bankCard);
+        this.clientCards.put(bankCard.getId(), bankCard);
     }
 
     public void removeCardToClientCards(BankCard bankCard) {
-        if(!this.clientCards.isEmpty()) this.clientCards.remove(bankCard.getId());
+        if (!this.clientCards.isEmpty()) this.clientCards.remove(bankCard.getId());
     }
 
     @Override
     public String toString() {
-        return this.getId() + "," + this.getFullName() + "," + this.getDateOfBirth();
+        return this.getId() + "," + this.getFullName() + "," + this.getDateOfBirth() + ".";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Client client)) return false;
+        return Objects.equals(firstName, client.firstName)
+                && Objects.equals(middleName, client.middleName)
+                && Objects.equals(surname, client.surname)
+                && gender == client.gender
+                && Objects.equals(dateOfBirth, client.dateOfBirth)
+                && Objects.equals(clientCards, client.clientCards);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, middleName, surname, gender, dateOfBirth, clientCards);
     }
 }
